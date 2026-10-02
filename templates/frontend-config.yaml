@@ -1,0 +1,25 @@
+{{- if .Values.repositories.frontend.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ include "repo-explorer-application-config.name" . }}-platform-repo-explorer-frontend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repositories.frontend.repoURL | quote }}
+    targetRevision: {{ .Values.repositories.frontend.revision | quote }}
+    path: {{ .Values.repositories.frontend.path | quote }}
+    directory:
+      recurse: true
+  destination:
+    server: {{ include "repo-explorer-application-config.target-server" . }}
+    namespace: {{ .Values.target.namespace | quote }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+---
+{{- end }}

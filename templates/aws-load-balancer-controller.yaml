@@ -1,0 +1,41 @@
+{{- if .Values.platform.awsLoadBalancerController.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ include "repo-explorer-application-config.name" . }}-platform-aws-lb-controller
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://aws.github.io/eks-charts
+      chart: aws-load-balancer-controller
+      targetRevision: {{ .Values.platform.awsLoadBalancerController.chartVersion | quote }}
+      helm:
+        releaseName: aws-load-balancer-controller
+        skipCrds: false
+        values: |
+          clusterName: {{ .Values.target.clusterName | quote }}
+          region: {{ .Values.aws.region | quote }}
+          serviceAccount:
+            create: false
+            name: {{ .Values.serviceAccounts.gatewayController | quote }}
+          controllerConfig:
+            featureGates:
+              ALBGatewayAPI: {{ .Values.platform.awsLoadBalancerController.featureGates.ALBGatewayAPI }}
+              NLBGatewayAPI: {{ .Values.platform.awsLoadBalancerController.featureGates.NLBGatewayAPI }}
+
+    - repoURL: https://github.com/kubernetes-sigs/gateway-api.git
+      targetRevision: {{ printf "v%s" .Values.platform.gatewayApi.version | quote }}
+      path: config/crd/standard
+
+  destination:
+    server: {{ include "repo-explorer-application-config.target-server" . }}
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+---
+{{- end }}

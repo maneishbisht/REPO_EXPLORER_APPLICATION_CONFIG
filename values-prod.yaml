@@ -1,0 +1,47 @@
+target:
+  key: prod
+  clusterName: prod_cluster
+  endpoint: "REPLACE_WITH_PROD_EKS_ENDPOINT"
+  namespace: repo-explorer
+
+aws:
+  region: ap-south-1
+
+serviceAccounts:
+  gatewayController: gateway-controller-sa
+
+platform:
+  awsLoadBalancerController:
+    enabled: true
+    chartVersion: 1.14.0
+    featureGates:
+      ALBGatewayAPI: true
+      NLBGatewayAPI: true
+
+  gatewayApi:
+    enabled: true
+    version: 1.6.0
+
+  secretsStoreCsiDriver:
+    enabled: true
+    chartVersion: 1.6.0
+    tokenRequests:
+      - audience: sts.amazonaws.com
+      - audience: pods.eks.amazonaws.com
+
+  secretsStoreCsiProviderAws:
+    enabled: true
+    chartVersion: 3.1.0
+
+repositories:
+  frontend:
+    enabled: true
+    repoURL: https://github.com/maneishbisht/REPO_EXPLORER_FRONTEND_CONFIG.git
+    path: .
+    revision: HEAD
+
+  backend:
+    enabled: true
+    repoURL: https://github.com/maneishbisht/REPO_EXPLORER_BACKEND_CONFIG.git
+    path: .
+    revision: HEAD

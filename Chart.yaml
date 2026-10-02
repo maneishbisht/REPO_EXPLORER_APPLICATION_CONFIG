@@ -1,0 +1,6 @@
+apiVersion: v2
+name: repo-explorer-application-config
+description: Argo CD application manifests for Repo Explorer platform dependencies and configuration repositories
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
