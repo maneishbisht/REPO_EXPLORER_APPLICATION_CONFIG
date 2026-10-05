@@ -1,7 +1,7 @@
 target:
   key: prod
   clusterName: prod_cluster
-  endpoint: "REPLACE_WITH_PROD_EKS_ENDPOINT"
+  endpoint: "https://501B1FE7983B75D433BAE5DBCA6C92B1.gr7.ap-south-1.eks.amazonaws.com"
   namespace: repo-explorer
 
 aws:
