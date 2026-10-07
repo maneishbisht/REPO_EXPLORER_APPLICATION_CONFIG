@@ -1,7 +1,7 @@
 target:
   key: dev
   clusterName: dev_cluster
-  endpoint: "REPLACE_WITH_DEV_EKS_ENDPOINT"
+  endpoint: "https://28E8C5C1DC96DD7DD5F0D19932590889.gr7.ap-south-1.eks.amazonaws.com"
   namespace: repo-explorer
 
 aws:

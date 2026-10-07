@@ -1,7 +1,7 @@
 target:
   key: test
   clusterName: test_cluster
-  endpoint: "REPLACE_WITH_TEST_EKS_ENDPOINT"
+  endpoint: "https://934A4F2119E96595CD70BEAD47EFD0FB.gr7.ap-south-1.eks.amazonaws.com"
   namespace: repo-explorer
 
 aws:
