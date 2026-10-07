@@ -6,6 +6,7 @@ target:
 
 aws:
   region: ap-south-1
+  vpcId: nothing
 
 serviceAccounts:
   gatewayController: gateway-controller-sa

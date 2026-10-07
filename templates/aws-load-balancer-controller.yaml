@@ -16,6 +16,7 @@ spec:
         values: |
           clusterName: {{ .Values.target.clusterName | quote }}
           region: {{ .Values.aws.region | quote }}
+          vpcId: {{ .Values.aws.vpcId | quote }}
           serviceAccount:
             create: false
             name: {{ .Values.serviceAccounts.gatewayController | quote }}
