@@ -1,7 +1,7 @@
 target:
   key: test
   clusterName: test_cluster
-  endpoint: "https://934A4F2119E96595CD70BEAD47EFD0FB.gr7.ap-south-1.eks.amazonaws.com"
+  endpoint: "https://8BA6D62BFCD0975660CC7D75E76DDC1B.gr7.ap-south-1.eks.amazonaws.com"
   namespace: repo-explorer
 
 aws:
