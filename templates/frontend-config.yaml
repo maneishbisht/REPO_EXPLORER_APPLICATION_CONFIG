@@ -10,8 +10,7 @@ spec:
     repoURL: {{ .Values.repositories.frontend.repoURL | quote }}
     targetRevision: {{ .Values.repositories.frontend.revision | quote }}
     path: {{ .Values.repositories.frontend.path | quote }}
-    directory:
-      recurse: true
+    helm: {}
   destination:
     server: {{ include "repo-explorer-application-config.target-server" . }}
     namespace: {{ .Values.target.namespace | quote }}
